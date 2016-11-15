@@ -10,11 +10,13 @@ var theEarth = (function() {
   var earthRadius = 6371; // km, miles is 3959
 
   var getDistanceFromRads = function(rads) {
-    return parseFloat(rads * earthRadius);
+    //return parseFloat(rads * earthRadius);
+    return parseFloat(rads/1000);  //https://forums.manning.com/posts/list/37802.page#p105657
   };
 
   var getRadsFromDistance = function(distance) {
-    return parseFloat(distance / earthRadius);
+    //return parseFloat(distance / earthRadius);
+    return parseFloat(distance*1000); ////https://forums.manning.com/posts/list/37802.page#p105657
   };
 
   return {
@@ -62,7 +64,8 @@ var buildLocationList = function(req, res, results, stats) {
   var locations = [];
   results.forEach(function(doc) {
     locations.push({
-      distance: theEarth.getDistanceFromRads(doc.dis),
+      //distance: theEarth.getDistanceFromRads(doc.dis),
+      distance: doc.dis, //https://forums.manning.com/posts/list/37802.page#p105657
       name: doc.obj.name,
       address: doc.obj.address,
       rating: doc.obj.rating,
