@@ -38,13 +38,14 @@ module.exports.locationsListByDistance = function(req, res) {
     num: 10
   };
   if (!lng || !lat || !maxDistance) {
+  //SM if ((!lng  && lng !== 0) || (!lat && lat !== 0) || !maxDistance) {
     console.log('locationsListByDistance missing params');
     sendJSONresponse(res, 404, {
       "message": "lng, lat and maxDistance query parameters are all required"
     });
     return;
   }
-  Loc.geoNear(point, geoOptions, function(err, results, stats) {
+  Loc.geoNear(point, geoOptions, function(err, results, stats) {                                               
     var locations;
     console.log('Geo Results', results);
     console.log('Geo stats', stats);
